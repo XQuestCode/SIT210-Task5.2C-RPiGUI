@@ -26,6 +26,7 @@ label1.place(x = 0, y = 0)
 var = IntVar()
 def Toggle():
     global var
+    Reset()
     #GPIO.cleanup()
     if(var.get()== 1):
         print("red")
@@ -37,12 +38,18 @@ def Toggle():
         print("blue")
         blueToggle()
     else:
-        #GPIO.cleanup()
+        Reset()
         print("Resetting all pins")
         
 #Coded by Aditya Parmar
 #XQuest
-        
+def Reset():
+    global redpin
+    global greenpin
+    global bluepin
+    GPIO.output(redpin, GPIO.LOW)
+    GPIO.output(greenpin, GPIO.LOW)
+    GPIO.output(bluepin, GPIO.LOW) 
 
 def redToggle(): 
     global redpin
@@ -60,7 +67,7 @@ def blueToggle():
 
 ####
 # Create a Button
-redButton = Radiobutton(root, text ="RED", 	fg= "red", variable=var, value=1, command = Toggle)
+redButton = Radiobutton(root, text ="RED", fg= "red", variable=var, value=1, command = Toggle)
 
 greenButton = Radiobutton(root, text ="GREEN", fg= "green",  variable=var, value=2, command = Toggle )
 
@@ -78,4 +85,6 @@ resetButton.pack(anchor = W ,padx=100,pady=10)
    
 #Coded by Aditya Parmar
 #XQuest
+
 root.mainloop()
+GPIO.cleanup()
