@@ -26,6 +26,7 @@ label1 = Label( root, image = bg)
 label1.place(x = 0, y = 0)
 #Functions
 def Toggle(button):
+   
     if button["relief"] == SUNKEN:
         button["relief"] = RAISED
         button["width"] = 10
@@ -33,7 +34,17 @@ def Toggle(button):
         button["relief"] = SUNKEN
         button["width"] = 9
         
-
+def Reset():  #to reset all the three LEDs
+    global redpin
+    global greenpin
+    global bluepin
+    redButton["relief"] = RAISED
+    greenButton["relief"] = RAISED
+    blueButton["relief"] = RAISED
+    GPIO.output(redpin, GPIO.LOW)
+    GPIO.output(greenpin, GPIO.LOW)
+    GPIO.output(bluepin, GPIO.LOW) 
+    
 def redToggle(): 
     global redState
     if redState == True:
@@ -80,3 +91,4 @@ blueButton.pack(padx=100,pady=10)
    
  
 root.mainloop()
+GPIO.cleanup()
