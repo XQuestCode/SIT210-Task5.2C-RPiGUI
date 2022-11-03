@@ -26,7 +26,7 @@ label1 = Label( root, image = bg)
 label1.place(x = 0, y = 0)
 #Functions
 def Toggle(button):
-   
+    Reset()
     if button["relief"] == SUNKEN:
         button["relief"] = RAISED
         button["width"] = 10
