@@ -1,6 +1,6 @@
 # import everything from tkinter module
 from tkinter import *   
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 # create a tkinter window
 root = Tk()             
 redpin = 10               #pin for red led
@@ -13,11 +13,11 @@ redState = True
 greenState = True
 
 blueState = True
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(redpin, GPIO.OUT)
-GPIO.setup(greenpin, GPIO.OUT)
-GPIO.setup(bluepin, GPIO.OUT)
+# GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BOARD)
+# GPIO.setup(redpin, GPIO.OUT)
+# GPIO.setup(greenpin, GPIO.OUT)
+# GPIO.setup(bluepin, GPIO.OUT)
 
 # Open window having dimension 100x100
 root.geometry('300x300')
@@ -41,41 +41,41 @@ def Reset():  #to reset all the three LEDs
     redButton["relief"] = RAISED
     greenButton["relief"] = RAISED
     blueButton["relief"] = RAISED
-    GPIO.output(redpin, GPIO.LOW)
-    GPIO.output(greenpin, GPIO.LOW)
-    GPIO.output(bluepin, GPIO.LOW) 
+    # GPIO.output(redpin, GPIO.LOW)
+    # GPIO.output(greenpin, GPIO.LOW)
+    # GPIO.output(bluepin, GPIO.LOW) 
     
 def redToggle(): 
     global redState
     if redState == True:
         Toggle(redButton)
-        GPIO.output(redpin, GPIO.HIGH)
+        # GPIO.output(redpin, GPIO.HIGH)
         redState = False
     else :
         Toggle(redButton)
-        GPIO.output(redpin, GPIO.LOW)
+        # GPIO.output(redpin, GPIO.LOW)
         redState = True
 
 def greenToggle():
     global greenState
     if greenState == True:
         Toggle(greenButton)
-        GPIO.output(greenpin, GPIO.HIGH)
+        # GPIO.output(greenpin, GPIO.HIGH)
         greenState = False
     else :
         Toggle(greenButton)
-        GPIO.output(greenpin, GPIO.LOW)
+        # GPIO.output(greenpin, GPIO.LOW)
         greenState = True
 
 def blueToggle():
     global blueState
     if blueState == True:
         Toggle(blueButton)
-        GPIO.output(bluepin, GPIO.HIGH)
+        # GPIO.output(bluepin, GPIO.HIGH)
         blueState = False
     else:
         Toggle(blueButton)
-        GPIO.output(bluepin, GPIO.LOW)
+        # GPIO.output(bluepin, GPIO.LOW)
         blueState = True
 
 ####
@@ -84,11 +84,14 @@ redButton = Button(root, text ="RED",bd = '5', fg = 'white', bg = 'red', height 
 greenButton = Button(root, text ="GREEN", bd = '5', fg = 'white', bg = 'green', height = 1, width = 10, relief=RAISED, command = greenToggle )
 blueButton = Button(root, text ="BLUE", bd = '5',  fg = 'white', bg = 'blue', height = 1, width = 10, relief=RAISED, command = blueToggle )
 
+resetButton = Button(root, text ="Reset", bd = '5',  fg = 'black', bg = 'white', height = 1, width = 10, relief=RAISED, command = Reset )
+
 redButton.pack(padx=100,pady=10)
 greenButton.pack(padx=100,pady=10)
 blueButton.pack(padx=100,pady=10)
+resetButton.pack(padx=100,pady=10)
 # Set the position of button on the top of window.  
    
  
 root.mainloop()
-GPIO.cleanup()
+# GPIO.cleanup()
